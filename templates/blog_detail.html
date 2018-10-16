@@ -1,0 +1,37 @@
+{% extends 'blog_menu.html'%}
+{% load staticfiles %}
+{% block head_extra %}
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+{% endblock head_extra %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <h3>{{ blog.title }}</h3>
+                <p class="blog_info">
+                    <span class="glyphicon glyphicon-user"></span><b>作者:{{ blog.author }}</b>
+                    <span class="glyphicon glyphicon-time"></span><b>发表时间:{{ blog.created_time|date:"Y-m-d H:n:s" }}</b>
+                </p>
+                <p class="blog_content">{{ blog.content }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block footer %}
+    <div class="blog-link">
+        <p>上一篇：
+            {% if previous_blog %}
+                <a href="/blog/details/{{ previous_blog.id }}">{{ previous_blog.title }}</a>
+            {% else %}
+                无
+            {% endif %}
+        </p>
+        <p>下一篇：
+            {% if next_blog %}
+                <a href="/blog/details/{{ next_blog.id }}">{{ next_blog.title }}</a>
+            {% else %}
+                无
+            {% endif %}
+        </p>
+    </div>
+{% endblock footer %}

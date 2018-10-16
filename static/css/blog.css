@@ -1,0 +1,25 @@
+div.blog_list:not(:last-child){
+    border-bottom: 1px solid #eee;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+}
+div.blog_list h3{
+    margin-top: 0.5em;
+}
+p.blog_content{
+    margin-top: 2em;
+    text-indent: 2em;
+}
+p.blog_info{
+    margin:1em 0 1em 0;
+}
+p.blog_info b{
+    margin-right:1em;
+}
+div.paginator{
+    text-align: center;
+}
+div.blog-link{
+    bottom:0;
+    position: fixed;
+}
