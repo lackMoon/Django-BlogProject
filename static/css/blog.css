@@ -19,7 +19,6 @@ p.blog_info b{
 div.paginator{
     text-align: center;
 }
-div.blog-link{
-    bottom:0;
-    position: fixed;
+div.blog_link p{
+  float: left;
 }

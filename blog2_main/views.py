@@ -20,6 +20,11 @@ def blog_list(request):
 
 def blog_details(request,id):
     blog=Blog.objects.get(pk=id)
+    if not request.COOKIES.get("blog_%s_readed" %blog.id):
+        blog.readed_num+=1
+        blog.save()
     previous_blog=Blog.objects.filter(created_time__gt=blog.created_time).last()
     next_blog=Blog.objects.filter(created_time__lt=blog.created_time).first()
-    return render(request,"blog_detail.html",{'blog':blog,'previous_blog':previous_blog,'next_blog':next_blog,'title':'博客内容','blog_active':'active'})
+    response=render(request,"blog_detail.html",{'blog':blog,'previous_blog':previous_blog,'next_blog':next_blog,'title':'博客内容','blog_active':'active'})
+    response.set_cookie("blog_%s_readed" % blog.id,"true",max_age=600)
+    return response

@@ -14,6 +14,7 @@ class Blog(models.Model):
 	blog_type=models.ForeignKey(Category,on_delete=models.CASCADE,verbose_name="博客分类")
 	author=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="作者")
 	content = RichTextField(verbose_name="内容")
+	readed_num=models.IntegerField(verbose_name="阅读量",default=0)
 	created_time=models.DateTimeField(auto_now_add=True,verbose_name="创建时间")
 	last_updated_time=models.DateTimeField(auto_now=True,verbose_name="更新时间")
 	class Meta:
