@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_extra %}
+<link href="{% static 'css/article.css' %}" rel="stylesheet">
+{% endblock head_extra %}
+{% block menu %}
+    <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#blog-navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'article:article_column' %}">个人管理后台</a>
+            </div>
+            <div class="collapse navbar-collapse" id="blog-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class={{ home_active }}><a href="{% url 'blog2_main:home' %}" ><span class="glyphicon glyphicon-book" style="margin-right: 1em;"></span>文章管理</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 10px" >
+                    {% if user.is_authenticated %}
+                        <li class={{ home_active }}><a href="{% url 'blog2_main:home' %}" ><span class="glyphicon glyphicon-home" style="margin-right: 1em;"></span>博客首页</a></li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" style="margin-top: 8px;">
+                                    {{ user.username }} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'account:user_center' %}">用户中心</a></li>
+                                    <li><a href="{% url 'article:article_column' %}">后台管理</a></li>
+                                    <li><a href="{% url 'account:pwd_change'%}">修改密码</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="{% url 'account:user_logout'%}">注销</a></li>
+                    {% else %}
+                        <li><a href="{% url 'account:user_login' %}">登录</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock menu %}
+{% block content %}
+<div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-sm-1">
+                    <div class="list-group text-center">
+                        <a class="list-group-item {{ column_active }}" href="{% url 'article:article_column' %}">栏目管理</a>
+                        <a class="list-group-item {{ article_active }}" href="{% url 'article:article_post' %}">文章管理</a>
+                    </div>
+                </div>
+                <div class="col-md-10 col-sm-11">
+                    {% block article %}
+                    {% endblock article %}
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock content %}

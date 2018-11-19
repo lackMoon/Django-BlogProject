@@ -1,0 +1,17 @@
+{% extends "blog_menu.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>重置密码</title>
+{% endblock %}
+
+{% block content %}
+    <div class="row text-center vertical-middle-sm">
+        <h1>重置密码</h1>
+        <form method="post" action="{{ url }}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p><input type="submit" class="btn btn-lg btn-primary" value="{% trans "更改密码" %}"></p>
+        </form>
+    </div>
+{% endblock %}

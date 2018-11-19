@@ -1,0 +1,22 @@
+{% extends "blog_menu.html" %}
+{% load i18n %}
+{% block title %}
+<title>重置密码</title>
+{% endblock title %}
+{% block content %}
+	{% if invalid %}{% url "password_reset_recover" as recovery_url %}
+        <div class="row text-center vertical-middle-sm">
+            <p>{% blocktrans %}抱歉，该链接失效了.你可以再次通过访问 <a href="{{ recovery_url }}">重新设置密码</a>.{% endblocktrans %}</p>
+        </div>
+	{% else %}
+        <div class="row text-center vertical-middle-sm">
+            <h1>设置新密码</h1>
+            <p>{% blocktrans %}你好,<strong>{{ username }}</strong>.请设置新密码:{% endblocktrans %}</p>
+            <form method="post" action="{% url "password_reset_reset" token %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </form>
+            <input type="submit" class="btn btn-lg btn-primary" value="{% trans "设置新密码" %}" />
+        </div>
+	{% endif %}
+{% endblock %}

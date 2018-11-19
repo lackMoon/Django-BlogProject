@@ -1,0 +1,61 @@
+{% extends 'article/article_base.html' %}
+{% load staticfiles %}
+{% block title %}
+    <title>文章管理</title>
+{% endblock title %}
+{% block head_extra %}
+ <link href="{% static 'css/article.css' %}" rel="stylesheet">
+ <link href="{% static 'editor/css/style.css' %}" rel="stylesheet">
+ <link href="{% static 'editor/css/editormd.css' %}" rel="stylesheet">
+{% endblock head_extra %}
+{% block article %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>发布文章</h3>
+        </div>
+        <div class="panel-body">
+            <div>
+                <form class="form-horizontal" action="." method="post">
+                    {% csrf_token %}
+                    <div class="row article_form">
+                        <div class="col-md-2 col-sm-1 text-right">标题:</div>
+                        <div id="id_title" class="col-md-10 col-sm-11 text-left">{{ article_form.title }}</div>
+                    </div>
+                    <div class="row article_form">
+                        <div class="col-md-2 col-sm-1 text-right">栏目:</div>
+                        <div class="col-md-10 col-sm-11 text-left">
+                            <select id="which_column">
+                                {% for column in columns %}
+                                    <option value="{{ column.id }}">{{ column.column }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row article_form">
+                        <div class="col-md-2 col-sm-1 text-right">内容:</div>
+                        <div id="editormd" class="col-md-10 col-sm-11 text-left">
+                            <textarea id="id_body"></textarea>
+                        </div>
+                    </div>
+                    <div class="row article_form text-center">
+                        <input type="button" class="btn btn-lg btn-primary " value="发布" onclick="publish_article()">
+                    </div>
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock article %}
+{% block script_extra %}
+    <script type="text/javascript" src="{% static 'editor/editormd.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/setup.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+                var editor=editormd("editormd",{
+                    width:750,
+                    height:750,
+                    syncScrolling:"single",
+                    path:"{% static 'editor/lib/' %}",
+                });
+            });
+    </script>
+{% endblock script_extra %}

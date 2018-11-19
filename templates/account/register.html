@@ -1,0 +1,85 @@
+{% extends "blog_menu.html" %}
+{% load staticfiles %}
+{% block title %}
+<title>账号注册</title>
+{% endblock title %}
+{% block head_extra %}
+    <link href="{% static 'css/account.css' %}" rel="stylesheet">
+{% endblock head_extra %}
+{% block content %}
+    <div class="panel panel-default account_panel col-md-5 col-md-offset-4">
+        <div class="panel-heading">
+            <h3>注册</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row text-center vertical-middle-sm">
+        <p>如果你已注册，请去<strong><a href="{% url 'account:user_login' %}">登录</a></strong></p>
+        <p style="color: red;text-align: center">(打*号的内容可不填，其余必须填写)</p>
+        <form class="form-horizontal" action="." method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-user"></span> 用户名:
+                </label>
+                <div class="col-md-6 text-left">{{ form.username }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-envelope"></span> 邮箱:
+                </label>
+                <div class="col-md-6 text-left">{{ form.email }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-floppy-open"></span> 密码:
+                </label>
+                <div class="col-md-6 text-left">{{ form.password }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-sunglasses"></span> 确认密码:
+                </label>
+                <div class="col-md-6 text-left">{{ form.password2 }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ profile.birth.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-star"></span> 生日:<span style="color: red">(*)</span>
+                </label>
+                <div class="col-md-6 text-left">{{ profile.birth}}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ profile.phone.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-earphone"></span> 电话:
+                </label>
+                <div class="col-md-6 text-left">{{ profile.phone}}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ info.school.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-education"></span> 学校:<span style="color: red">(*)</span>
+                </label>
+                <div class="col-md-6 text-left">{{ info.school }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ info.company.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-briefcase"></span> 公司:<span style="color: red">(*)</span>
+                </label>
+                <div class="col-md-6 text-left">{{info.company}}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{info.profession.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-wrench"></span> 职业:<span style="color: red">(*)</span>
+                </label>
+                <div class="col-md-6 text-left">{{ info.profession}}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{info.address.id_for_label }}" class="col-md-5 control-label">
+                    <span class="glyphicon glyphicon-home"></span> 住址:<span style="color: red">(*)</span>
+                </label>
+                <div class="col-md-6 text-left">{{info.address}}</div>
+            </div>
+            <input type="submit" class="btn btn-primary btn-lg" value="注册" />
+        </form>
+    </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,10 @@
+body{
+            padding-top: 70px;
+}
+
+.article_form{
+    margin-top: 10px;
+}
+#id_body{
+    display: none;
+}

@@ -1,0 +1,1 @@
+{% load i18n %}{% blocktrans with domain=site.domain %}密码重置: {{ domain }}{% endblocktrans %}

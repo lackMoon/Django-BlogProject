@@ -1,0 +1,9 @@
+{% load i18n %}{% blocktrans %}亲爱的 {{ username }},{% endblocktrans %}
+
+{% blocktrans with domain=site.domain %}你 -- 或者其他使用此账户的人在 {{ domain }}上发送了密码重置申请.{% endblocktrans %}
+
+{% trans "您可以点击下面的链接重置密码:" %}
+
+http{% if secure %}s{% endif %}://{{ site.domain }}{% url "password_reset_reset" token %}
+
+{% trans "如果这不是您本人的操作，请忽视此邮件" %}

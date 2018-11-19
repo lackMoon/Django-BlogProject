@@ -1,0 +1,12 @@
+{% extends "blog_menu.html" %}
+{% load i18n %}
+{% block title %}
+    <title>重置密码</title>
+{% endblock title%}
+
+{% block content %}
+    <div class="row text-center vertical-middle-sm">
+        <h1>密码重置成功</h1>
+        <p>{% trans "您的密码已经成功重置，请前往登录页面重新登录." %}</p>
+    </div>
+{% endblock %}
