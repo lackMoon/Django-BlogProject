@@ -12,13 +12,13 @@
               <div class="panel-body">
                   {% for blog in page_blogs.object_list %}
                       <div class="blog_list">
-                          <h3><a href="/blog/details/{{ blog.id }}" >{{ blog.title }}</a></h3>
+                          <h3><a href="{% url 'blog2_main:details' blog.id%}" >{{ blog.title }}</a></h3>
                           <p class="blog_info">
                               <span class="glyphicon glyphicon-tag"></span><b>分类:{{ blog.blog_type }}</b>
                               <span class="glyphicon glyphicon-time"></span><b>发表时间:{{ blog.created_time| date:"Y-m-d"}}</b>
-                              <span class="glyphicon glyphicon-eye-open"></span><b>阅读量:{{ blog.readed_num }}</b>
+                              <span class="glyphicon glyphicon-eye-open"></span><b>阅读量:{{ blog.get_read_num }}</b>
                           </p>
-                          <p>{{ blog.content|truncatechars:50 }}</p>
+                          <p>{{ blog.content| truncatechars:50}}</p>
                       </div>
                   {% endfor %}
               </div>

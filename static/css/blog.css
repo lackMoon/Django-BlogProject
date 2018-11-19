@@ -22,3 +22,10 @@ div.paginator{
 div.blog_link p{
   float: left;
 }
+div.comment-area{
+    margin-top: 2em;
+}
+h3.area-title{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.4em;
+}

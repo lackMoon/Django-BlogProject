@@ -1,4 +1,4 @@
-{% extends 'blog_menu.html'%}
+{% extends 'blog_menu.html' %}
 {% load staticfiles %}
 {% block head_extra %}
     <link href="{% static 'css/blog.css' %}" rel="stylesheet">
@@ -15,20 +15,19 @@
                 <p class="blog_content">{{ blog.content }}</p>
             </div>
         </div>
-    </div>
 {% endblock content %}
 {% block footer %}
     <div class="blog_link">
         <p>上一篇：
             {% if previous_blog %}
-                <a href="/blog/details/{{ previous_blog.id }}">{{ previous_blog.title }}</a>
+                <a href="{% url 'blog2_main:details' previous_blog.id %}">{{ previous_blog.title }}</a>
             {% else %}
                 无
             {% endif %}
         </p>
         <p>下一篇：
             {% if next_blog %}
-                <a href="/blog/details/{{ next_blog.id }}">{{ next_blog.title }}</a>
+                <a href="{% url 'blog2_main:details' next_blog.id %}">{{ next_blog.title }}</a>
             {% else %}
                 无
             {% endif %}
